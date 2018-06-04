@@ -74,18 +74,18 @@ ask_for_confirmation <- function(ask, sol, lib) {
     cli::cli$text(" ")
   }
 
-  cli$text(" ")
+  cli::cli$text(" ")
   if (n_newly) {
-    cli$alert("Will {emph install} {n_newly} packages:")
+    cli::cli$alert("Will {emph install} {n_newly} packages:")
     package_list(sol$ref[newly])
   }
   if (n_upd) {
-    cli$alert("Will {emph update} {n_upd} packages:")
+    cli::cli$alert("Will {emph update} {n_upd} packages:")
     package_list(sol$ref[upd])
   }
   if (n_curr + n_noupd) {
-    cli$alert("Will {emph not update} {n_curr + n_noupd} packages.")
-    cli$text(" ")
+    cli::cli$alert("Will {emph not update} {n_curr + n_noupd} packages.")
+    cli::cli$text(" ")
   }
 
   warn_for_loaded_packages(sol$package[newly | upd], lib)
@@ -96,7 +96,7 @@ ask_for_confirmation <- function(ask, sol, lib) {
       "Installation aborted")
   }
 
-  cli$text(" ")
+  cli::cli$text(" ")
 }
 
 warn_for_loaded_packages <- function(pkgs, lib) {
@@ -107,12 +107,12 @@ warn_for_loaded_packages <- function(pkgs, lib) {
     )
     bad <- maybe_bad[normalizePath(loaded_from) == normalizePath(lib)]
     if (length(bad)) {
-      cli$alert_warning(
+      cli::cli$alert_warning(
         "Package(s) {format_items(bad)} are already loaded, installing \\
          them may cause problems. Use {code pkgload::unload()} to unload them.",
         wrap = TRUE
       )
-      cli$text(" ")
+      cli::cli$text(" ")
     }
   }
 }
